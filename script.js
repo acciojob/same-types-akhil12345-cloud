@@ -1,5 +1,27 @@
 function isSameType(value1, value2) {
-  //your js code here
+  // Convert string inputs to actual values
+  const val1 = parseValue(value1);
+  const val2 = parseValue(value2);
+
+  // Check if both are NaN
+  if (Number.isNaN(val1) && Number.isNaN(val2)) {
+    return true;
+  }
+
+  // If only one is NaN
+  if (Number.isNaN(val1) || Number.isNaN(val2)) {
+    return false;
+  }
+
+  // Compare types
+  return typeof val1 === typeof val2;
+}
+
+function parseValue(val) {
+  // Try to convert to number if possible
+  if (val.trim().toLowerCase() === "nan") return NaN;
+  if (!isNaN(val)) return Number(val);
+  return val;
 }
 
 // do not change the code below.
